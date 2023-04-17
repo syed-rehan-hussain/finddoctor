@@ -1,6 +1,9 @@
+const Joi = require('joi');
+Joi.objectId = require('joi-objectid')(Joi);
 const express = require("express");
 const app = express();
-const blogRouter = require("./routes/BlogRoutes");
+const blogRoute = require("./routes/BlogRoutes");
+const userRoute = require("./routes/User");
 const mongoose = require("mongoose");
 
 mongoose.set("strictQuery", true);
@@ -22,7 +25,8 @@ mongoose.connect(
  
 //middleware
 app.use(express.json());
-app.use("/api/blogs", blogRouter);
+app.use("/api/blogs", blogRoute);
+app.use("/api/users", userRoute);
  
 app.listen(3001, () => {
   console.log("Server is running on port 3001");
