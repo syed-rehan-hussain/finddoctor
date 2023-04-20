@@ -1,7 +1,7 @@
 const express = require("express");
 
 const jwt = require('jsonwebtoken');
-const jwt = require('../middleware/check-auth');
+// const jwt = require('../middleware/check-auth');
 const {
   getAllBlogs,
   createBlog,

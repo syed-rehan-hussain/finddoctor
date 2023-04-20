@@ -3,8 +3,9 @@ const express = require('express');
 const router = express.Router();
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
-const jwt = require('../middleware/check-auth');
+const checkauth = require('../middleware/check-auth');
 
+//register
 router.post('/signup', async (req, res) => {
     // First Validate The Request
     
@@ -42,6 +43,7 @@ router.post('/signup', async (req, res) => {
     }
 });
 
+//login api
 router.post('/login',(req,res,next)=>{
     User.find({name:req.body.username})
     .exec()
