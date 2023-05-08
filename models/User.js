@@ -26,6 +26,25 @@ const User = mongoose.model('User', new mongoose.Schema({
         required: true,
         minlength: 5,
         maxlength: 100
+    }, 
+    phoneNumber: {
+        type: String,
+        required: true,
+        minlength: 15,
+        unique: true
+    },
+    profileImage: {
+        type: String,
+        required: true
+    },
+    userAddress: {
+        type: String,
+        maxlength: 200,
+    },
+    gender: {
+        type: String,
+        enum : ['male','female','other', 'unidentified'],
+        default: 'unidentified'
     }
 }));
 
@@ -34,10 +53,20 @@ function validateUser(user) {
         name: Joi.string().min(5).max(50).required(),
         email: Joi.string().min(5).max(255).required().email(),
         password: Joi.string().min(5).max(255).required(),
-        userType: Joi.string().min(5).max(100).required()
+        userType: Joi.string().min(5).max(100).required(),
+        phoneNumber: Joi.string().min(11).required(),
     });
     return schema.validate(user);
 }
 
 exports.User = User;
 exports.validate = validateUser;
+
+
+/*
+imge profile
+address
+phone
+bio
+gender
+*/

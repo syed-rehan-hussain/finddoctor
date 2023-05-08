@@ -13,7 +13,7 @@ const mongoose = require("mongoose");
 mongoose.set("strictQuery", true);
 //configure mongoose
 mongoose.connect(
-  process.env.MONGODB_URI || "mongodb://0.0.0.0:27017/CRUD",
+  process.env.MONGODB_URI || "mongodb://127.0.0.1:27017/CRUD",
   {
     useNewUrlParser: true,
     useUnifiedTopology: true,
