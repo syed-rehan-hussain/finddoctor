@@ -11,8 +11,18 @@ exports.getAllDaysoffs = async (req, res) => {
  
 exports.createDaysoff = async (req, res) => {
   try {
+    console.log(req.body);
     const daysoff = await daysoffService.createDaysoff(req.body);
     res.json({ data: daysoff, status: "success" });
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+};
+
+exports.optionsDayoff = async (req, res) => {
+  try {
+    // const daysoff = await daysoffService.createDaysoff(req.body);
+    res.json({status: "success" });
   } catch (err) {
     res.status(500).json({ error: err.message });
   }

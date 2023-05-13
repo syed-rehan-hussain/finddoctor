@@ -21,6 +21,9 @@ exports.createAppointment = async (req, res) => {
 exports.getAppointmentById = async (req, res) => {
   try {
     const appointment = await appointmentService.getAppointmentById(req.params.id);
+    // console.log(appointment);
+    // console.log(appointment[0]['doctorId']);
+   
     res.json({ data: appointment, status: "success" });
   } catch (err) {
     res.status(500).json({ error: err.message });

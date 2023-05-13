@@ -45,7 +45,7 @@ router.post('/signup', async (req, res) => {
 
 //login api
 router.post('/login',(req,res,next)=>{
-    User.find({name:req.body.username})
+    User.find({email:req.body.username})
     .exec()
     .then(user=>{
         if(user.length < 1)
@@ -88,5 +88,18 @@ router.post('/login',(req,res,next)=>{
         })
     })
 })
+
+router.get('/:id', async (req, res) => {
+
+    // Check if this user already exisits
+    // console.log(req.params.id)
+    let user = await User.findById(req.params.id);
+    if (user) {
+        // console.log(user.name);
+        res.json({ data: user.name, status: "success" });
+    } else {
+        return res.status(400).send('Doctor Not Found!');
+    }
+});
 
 module.exports = router;
