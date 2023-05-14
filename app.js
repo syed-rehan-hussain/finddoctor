@@ -25,7 +25,7 @@ mongoose.set("strictQuery", true);
 mongoose.connect(
   process.env.MONGODB_URI || "mongodb://127.0.0.1:27017/CRUD",
   {
-    useNewUrlParser: true,
+    useNewUrlParser: true,  
     useUnifiedTopology: true,
   },
   (err) => {
@@ -40,6 +40,7 @@ mongoose.connect(
 
 //middleware
 app.use(express.json());
+
 
 app.use("/api/blogs", blogRoute);
 app.use("/api/users", userRoute);

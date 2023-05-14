@@ -3,6 +3,10 @@ const DaysoffModel = require("../models/Daysoff");
 exports.getAllDaysoffs = async () => {
   return await DaysoffModel.find();
 };
+
+exports.getAllDaysOffOfDoctor = async (docId) => {
+  return await DaysoffModel.find({doctorId: docId});
+};
  
 exports.createDaysoff = async (daysoff) => {
   return await DaysoffModel.create(daysoff);

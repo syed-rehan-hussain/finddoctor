@@ -33,6 +33,10 @@ router.post('/signup', async (req, res) => {
                     email: req.body.email,
                     password: hash,
                     userType: req.body.userType,
+                    phoneNumber: req.body.phoneNumber,
+                    gender: req.body.gender,
+                    profileImage: req.body.profileImage,
+                    userAddress: req.body.userAddress
                 });
                 
                 user.save();
@@ -102,4 +106,12 @@ router.get('/:id', async (req, res) => {
     }
 });
 
+router.get('/', async (req,res,next) => {
+   let users = await User.find({userType: "doctor"});
+    if (users != null) {
+        res.json({ data: users, status: "success" });
+    } else {
+        return res.status(400).send('Doctor Not Found!');
+    }
+});
 module.exports = router;

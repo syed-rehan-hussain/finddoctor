@@ -24,13 +24,12 @@ const User = mongoose.model('User', new mongoose.Schema({
     userType: {
         type: String,
         required: true,
-        minlength: 5,
-        maxlength: 100
+        enum : ['doctor','client','admin'],
+        default: 'client'
     }, 
     phoneNumber: {
         type: String,
         required: true,
-        minlength: 15,
         unique: true
     },
     profileImage: {
@@ -53,8 +52,12 @@ function validateUser(user) {
         name: Joi.string().min(5).max(50).required(),
         email: Joi.string().min(5).max(255).required().email(),
         password: Joi.string().min(5).max(255).required(),
-        userType: Joi.string().min(5).max(100).required(),
+        userType: Joi.string().required(),
         phoneNumber: Joi.string().min(11).required(),
+        gender: Joi.string().required(),
+        profileImage: Joi.string().required(),
+        userAddress: Joi.string().max(200).required()
+
     });
     return schema.validate(user);
 }

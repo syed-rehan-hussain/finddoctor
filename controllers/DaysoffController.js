@@ -8,6 +8,15 @@ exports.getAllDaysoffs = async (req, res) => {
     res.status(500).json({ error: err.message });
   }
 };
+
+exports.getAllDaysOffOfDoctor = async (req, res)=> {
+  try {
+    const daysoffs = await daysoffService.getAllDaysOffOfDoctor();
+    res.json({ data: daysoffs, status: "success" });
+  }catch (err) {
+    res.status(500).json({error: err.message})
+  }
+};
  
 exports.createDaysoff = async (req, res) => {
   try {
