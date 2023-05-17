@@ -5,7 +5,16 @@ exports.getAllWeekdays = async () => {
 };
  
 exports.createWeekday = async (weekday) => {
-  return await WeekdayModel.create(weekday);
+  
+ const query = { "doctorId" : weekday['doctorId'], "dayindex": weekday['dayindex']  };
+ return await WeekdayModel.find(query);
+//  if(week){
+//   console.log(week);
+//   return await WeekdayModel.findByIdAndUpdate(weekday['doctorId'], weekday);
+//  }
+//  else{
+//   return await WeekdayModel.create(weekday);
+ //}
 };
 exports.getWeekdayById = async (id) => {
   const query = { "doctorId" : id };

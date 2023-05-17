@@ -29,12 +29,11 @@ const User = mongoose.model('User', new mongoose.Schema({
     }, 
     phoneNumber: {
         type: String,
-        required: true,
         unique: true
     },
     profileImage: {
         type: String,
-        required: true
+        required: false
     },
     userAddress: {
         type: String,
@@ -54,9 +53,6 @@ function validateUser(user) {
         password: Joi.string().min(5).max(255).required(),
         userType: Joi.string().required(),
         phoneNumber: Joi.string().min(11).required(),
-        gender: Joi.string().required(),
-        profileImage: Joi.string().required(),
-        userAddress: Joi.string().max(200).required()
 
     });
     return schema.validate(user);

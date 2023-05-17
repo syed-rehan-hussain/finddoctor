@@ -32,6 +32,9 @@ router.post('/signup', async (req, res) => {
                     name: req.body.name,
                     email: req.body.email,
                     password: hash,
+                    phoneNumber: req.body.phoneNumber,
+                    profileImage: req.body.profileImage,
+                    userAddress: req.body.userAddress,
                     userType: req.body.userType,
                     phoneNumber: req.body.phoneNumber,
                     gender: req.body.gender,
@@ -110,8 +113,33 @@ router.get('/', async (req,res,next) => {
    let users = await User.find({userType: "doctor"});
     if (users != null) {
         res.json({ data: users, status: "success" });
+    }
+});
+
+router.get('/doctor/:id', async (req, res) => {
+
+    // Check if this user already exisits
+    // console.log(req.params.id)
+    let user = await User.findById(req.params.id);
+    if (user) {
+        // console.log(user.name);
+        res.json({ data: user, status: "success" });
     } else {
         return res.status(400).send('Doctor Not Found!');
     }
 });
+
+router.put('/doctor/:id', async (req, res) => {
+
+    console.log(req.body);
+    let user = await User.findByIdAndUpdate(req.params.id, req.body);
+    //let user = await User.findById(req.params.id);
+    if (user) {
+        // console.log(user.name);
+        res.json({ data: user, status: "success" });
+    } else {
+        return res.status(400).send('Doctor Not Found!');
+    }
+});
+
 module.exports = router;

@@ -1,5 +1,6 @@
 const weekdayService = require("../services/WeekdayService");
- 
+const WeekdayModel = require("../models/Weekday");
+
 exports.getAllWeekdays = async (req, res) => {
   try {
     const weekdays = await weekdayService.getAllWeekdays();
@@ -12,7 +13,14 @@ exports.getAllWeekdays = async (req, res) => {
 exports.createWeekday = async (req, res) => {
   try {
     const weekday = await weekdayService.createWeekday(req.body);
-    res.json({ data: weekday, status: "success" });
+    let week_day = '';
+    if(weekday[0]){
+      week_day = weekdayService.updateWeekday(weekday[0]['id'], req.body);
+    }
+    else{
+      week_day =  WeekdayModel.create(req.body);
+    }
+    res.json({ data: week_day, status: "success" });
   } catch (err) {
     res.status(500).json({ error: err.message });
   }
