@@ -11,7 +11,7 @@ exports.getAllDaysoffs = async (req, res) => {
 
 exports.getAllDaysOffOfDoctor = async (req, res)=> {
   try {
-    const daysoffs = await daysoffService.getAllDaysOffOfDoctor();
+    const daysoffs = await daysoffService.getAllDaysOffOfDoctor(req.params.id);
     res.json({ data: daysoffs, status: "success" });
   }catch (err) {
     res.status(500).json({error: err.message})

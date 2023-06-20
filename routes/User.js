@@ -71,6 +71,7 @@ router.post('/login',(req,res,next)=>{
             if(result)
             {
                 const token = jwt.sign({
+                    id: user[0].id,
                     username:user[0].username,
                     userType: user[0].userType,
                     email: user[0].email,

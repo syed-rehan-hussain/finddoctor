@@ -16,9 +16,10 @@ const {
 
 const router = express.Router();
 
-router.route("/").options(optionsDayoff);
-router.route("/:docId").get(getAllDaysOffOfDoctor);
+//router.route("/").options(optionsDayoff);
+router.route("/:id").get(getAllDaysOffOfDoctor);
 router.route("/").get(getAllDaysoffs).post(createDaysoff);
-router.route("/:id").get(getDaysoffById).put(updateDaysoff).delete(deleteDaysoff);
+router.route("/:id").put(updateDaysoff).delete(deleteDaysoff);
+//router.route("/:id").get(getDaysoffById)
  
 module.exports = router;
