@@ -119,7 +119,7 @@ router.get('/', async (req,res,next) => {
 
 router.get('/doctor/:id', async (req, res) => {
 
-    // Check if this user already exisits
+    // Check if this user already exists
     // console.log(req.params.id)
     let user = await User.findById(req.params.id);
     if (user) {

@@ -46,7 +46,7 @@ app.use("/api/blogs", blogRoute);
 app.use("/api/users", userRoute);
 app.use("/api/services", serviceRoute);
 app.use("/api/appointments", appointmentRoute);
-app.use("/api/weekdays",cors(), weekdayRoute);
+app.use("/api/weekdays", weekdayRoute);
 app.use("/api/daysoff", daysoffRoute);
 
 

@@ -16,6 +16,16 @@ exports.getAppointmentById = async (id) => {
   // console.log(data['schema']['obj']['date']);
   return await data;
 };
+
+exports.getAppointmentByClientId = async (id) => {
+  const query = { "clientId" : id };
+  const data = AppointmentModel.find(query)
+  //const doctor_name = AppointmentModel.find(query)
+  // console.log(data['schema']);
+  // console.log("divide");
+  // console.log(data['schema']['obj']['date']);
+  return await data;
+};
  
 exports.updateAppointment = async (id, appointment) => {
   return await AppointmentModel.findByIdAndUpdate(id, appointment);

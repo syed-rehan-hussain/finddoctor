@@ -29,6 +29,18 @@ exports.getAppointmentById = async (req, res) => {
     res.status(500).json({ error: err.message });
   }
 };
+
+exports.getAppointmentByClientId = async (req, res) => {
+  try {
+    const appointment = await appointmentService.getAppointmentByClientId(req.params.id);
+    // console.log(appointment);
+    // console.log(appointment[0]['doctorId']);
+   
+    res.json({ data: appointment, status: "success" });
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+};
  
 exports.updateAppointment = async (req, res) => {
   try {
